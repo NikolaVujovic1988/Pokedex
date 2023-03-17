@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+}
+
+.pokemonsCard {
+    min-height: 50vh;
+    background-color: red;
+    color: white;
+}
