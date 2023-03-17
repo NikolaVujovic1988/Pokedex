@@ -7,9 +7,9 @@ async function loadPokemons() {
 
     console.log('loaded pokemon', currentPokemon);
 
-    renderPokemon();
+    renderPokemonInfo();
 }
 
-function renderPokemon() {
+function renderPokemonInfo() {
     document.getElementById('pokemonName').innerHTML = currentPokemon['name'];
 }
