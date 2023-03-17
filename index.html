@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,11 +13,25 @@
 
 <body onload="loadPokemons()">
 
-    <div class="pokemonsCard">
 
-        <h1 class="pokemonName" id="pokemonName"></h1>
+    <div class="pokemonBigCard">
+        <div class="pokemonsCard">
+            <div class="pokemonsCardHeader">
+                <h2 class="pokemonName" id="pokemonName"></h2>
+                <span id="pokemonNo"></span>
+            </div>
+            <div class="pokemonsCardHeaderBtn">
+                <button class="headerBtn">green</button>
+                <button class="headerBtn">black</button>
+            </div>
 
+        </div>
+
+        <div class="pokemonsInfo">
+            <img id="pokemonImage">
+        </div>
     </div>
-    
+
 </body>
+
 </html>
