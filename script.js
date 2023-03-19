@@ -9,19 +9,16 @@ async function loadPokemons() {
         currentPokemon = await response.json();
         pokemons.push(currentPokemon);
         console.log('loaded pokemon', currentPokemon);
-    
-    //let url = 'https://pokeapi.co/api/v2/pokemon/1/';
-    //let response = await fetch(url);
-    //currentPokemon = await response.json();
+        document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate();
+    }
+}
 
-    //console.log('loaded pokemon', currentPokemon);
-    //countPokemons = i;
-    //renderPokemonInfo();
-    document.getElementById('pokemonBigCard').innerHTML += `
+function smallCardTemplate() {
+    return `
         <div class="pokemonsCard">
             <div class="pokemonsCardHeader">
                 <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
-                <span id="pokemonNo"></span>
+                <span id="pokemonNo">#${currentPokemon['id']}</span>
             </div>
             <div class="pokemonsCardHeaderBtn">
                 <button class="headerBtn">green</button>
@@ -30,14 +27,12 @@ async function loadPokemons() {
             </div>
 
             <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
-            <img id="pokemonImage">
+            <img id="pokemonImage" src="${currentPokemon['sprites']['other']['dream_world']['front_default']}">
         </div>
-
     `;
-    }
 }
 
-function renderPokemonInfo() {
+async function renderPokemonInfo() {
     document.getElementById('pokemonName').innerHTML = currentPokemon['name'];
     document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['dream_world']['front_default'];
     document.getElementById('pokemonNo'). innerHTML = `#${currentPokemon['id']}`;
