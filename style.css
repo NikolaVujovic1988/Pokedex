@@ -7,15 +7,18 @@ body {
 }
 
 .pokemonsCard {
-    height: 200px;
+    height: 150px;
+    width: 250px;
     background-color: #FC6D6D;
     color: white;
     display: flex;
     flex-direction: column;
-    border-top-right-radius: 40px;
-    border-top-left-radius: 40px;
+    border-radius: 40px;
+    border: 0.5px solid lightgray;
     padding: 24px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
     position: relative;
+    margin: 20px;
 }
 
 .pokemonsInfo {
@@ -31,13 +34,8 @@ body {
 
 .pokemonBigCard {
     display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 500px;
-    margin-top: 30px;
-    border: 0.5px solid lightgray;
-    border-radius: 40px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #pokemonImage {

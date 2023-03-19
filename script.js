@@ -33,10 +33,8 @@ async function loadPokemons() {
             <img id="pokemonImage">
         </div>
 
-        <div class="pokemonsInfo">
-
-        </div>
-    `;}
+    `;
+    }
 }
 
 function renderPokemonInfo() {
