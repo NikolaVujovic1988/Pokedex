@@ -81,3 +81,15 @@ body {
     color: white;
     border-radius: 10px;
 }
+
+.grass {
+    background-color: green;
+}
+
+.fire {
+    background-color: #FC6D6D;
+}
+
+.water {
+    background-color: blue;
+}

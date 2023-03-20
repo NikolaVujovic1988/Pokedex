@@ -15,7 +15,15 @@ function loadTypes(currentPokemon, i) {
     for (let j = 0; j < currentPokemon["types"].length; j++) {
         const type = currentPokemon["types"][j]["type"]["name"];
         console.log(type);
-        document.getElementById(`pokemonsCardHeaderBtn${i}`).innerHTML += typeInfoTemplate(type);    
+        document.getElementById(`pokemonsCardHeaderBtn${i}`).innerHTML += typeInfoTemplate(type);   
+        renderTypes(type, i); 
+    }
+}
+
+function renderTypes(type, i) {
+    let typeId = document.getElementById(`pokemonsCard${i}`);
+    if (type == 'grass') {
+        typeId.classList.add('grass');
     }
 }
 
@@ -27,7 +35,7 @@ function typeInfoTemplate(type) {
 
 function smallCardTemplate(i) {
     return `
-        <div class="pokemonsCard">
+        <div class="pokemonsCard" id="pokemonsCard${i}">
             <div class="pokemonsCardHeader">
                 <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
                 <span id="pokemonNo">#${currentPokemon['id']}</span>
