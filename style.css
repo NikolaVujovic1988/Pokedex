@@ -1,9 +1,9 @@
 body {
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
-    background-color: rgba(247, 247, 247, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow-x: hidden;
+    background-color: rgb(238, 238, 238);
 }
 
 .pokemonsCard {
@@ -18,7 +18,7 @@ body {
     padding: 24px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
     position: relative;
-    margin: 20px;
+    margin: 5px;
 }
 
 .pokemonsInfo {

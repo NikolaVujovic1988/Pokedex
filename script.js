@@ -20,10 +20,8 @@ function smallCardTemplate() {
                 <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
                 <span id="pokemonNo">#${currentPokemon['id']}</span>
             </div>
-            <div class="pokemonsCardHeaderBtn">
-                <button class="headerBtn">green</button>
-                <button class="headerBtn">black</button>
-
+            <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn">
+                <button class="headerBtn">${currentPokemon['types']['0']['type']['name']}</button>
             </div>
 
             <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
