@@ -1,7 +1,9 @@
 let currentPokemon;
 
+let countPokemons = 0;
+
 async function loadPokemons() {
-    for (let i = 0; i < 20; i++) {
+    for (let i = countPokemons; i < countPokemons + 20; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
         let response = await fetch(url);
         currentPokemon = await response.json();
@@ -9,12 +11,13 @@ async function loadPokemons() {
         document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i);
         loadTypes(currentPokemon, i);
     }
+    countPokemons += 20;
+    console.log(countPokemons);
 }
 
 function loadTypes(currentPokemon, i) {
     for (let j = 0; j < currentPokemon["types"].length; j++) {
         const type = currentPokemon["types"][j]["type"]["name"];
-        console.log(type);
         document.getElementById(`pokemonsCardHeaderBtn${i}`).innerHTML += typeInfoTemplate(type);   
         renderTypes(type, i); 
     }
