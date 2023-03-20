@@ -25,6 +25,36 @@ function renderTypes(type, i) {
     if (type == 'grass') {
         typeId.classList.add('grass');
     }
+    if (type == 'water') {
+        typeId.classList.add('water');
+    }
+    if (type == 'bug') {
+        typeId.classList.add('bug');
+    }
+    if (type == 'normal') {
+        typeId.classList.add('normal');
+    }
+    if (type == 'poison') {
+        typeId.classList.add('poison');
+    }
+    if (type == 'electric') {
+        typeId.classList.add('electric');
+    }
+    if (type == 'ground') {
+        typeId.classList.add('ground');
+    }
+    if (type == 'fairy') {
+        typeId.classList.add('fairy');
+    }
+    if (type == 'fighting') {
+        typeId.classList.add('fighting');
+    }
+    if (type == 'psychic') {
+        typeId.classList.add('psychic');
+    }
+    if (type == 'rock') {
+        typeId.classList.add('rock');
+    }
 }
 
 function typeInfoTemplate(type) {
