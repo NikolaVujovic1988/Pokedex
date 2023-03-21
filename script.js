@@ -85,8 +85,12 @@ function smallCardTemplate(i) {
 async function openPokemonStats(i) {
     document.getElementById('pokemonStatsCard').classList.remove('d-none');
 
+    let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
+    let response = await fetch(url);
+    currentPokemon = await response.json();
+
     document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(i);
-    //loadTypes(currentPokemon, i);
+    loadTypes(currentPokemon, i);
 }
 
 function bigCardTemplate(i) {
