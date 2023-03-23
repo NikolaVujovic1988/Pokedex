@@ -109,3 +109,20 @@ function bigCardTemplate(i) {
         </div>
     `;
 }
+
+async function searchPokemon() {
+    let search = document.getElementById('search').value;
+    search = search.toLowerCase();
+    console.log(search);
+
+    for (let i = countPokemons; i < countPokemons + 20; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
+        let response = await fetch(url);
+        currentPokemon = await response.json();
+        if (currentPokemon['name'].toLowerCase().includes(search)) {
+            document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i);
+            loadTypes(currentPokemon, i);
+        }
+        
+    }
+}
