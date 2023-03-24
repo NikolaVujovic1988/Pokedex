@@ -2,7 +2,23 @@ let currentPokemon;
 
 let countPokemons = 0;
 
+let searchedPokemon = [];
+
+async function init() {
+    loadPokemons();
+}
+
 async function loadPokemons() {
+    let url = `https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0`;
+    let response = await fetch(url);
+    let respondPokemon = await response.json();
+    let allPokemon = respondPokemon['results']
+    globalThis.allPokemons = allPokemon;
+
+    load20Pokemons();
+}
+
+async function load20Pokemons() {
     for (let i = countPokemons; i < countPokemons + 20; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
         let response = await fetch(url);
@@ -110,19 +126,28 @@ function bigCardTemplate(i) {
     `;
 }
 
-async function searchPokemon() {
+function searchPokemon() {
     let search = document.getElementById('search').value;
-    search = search.toLowerCase();
-    console.log(search);
+    searchValue = search.toLowerCase();
+    console.log(searchValue);
+    renderSearch(searchValue);
+    search.value = '';
+}
 
-    for (let i = countPokemons; i < countPokemons + 20; i++) {
-        let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
-        let response = await fetch(url);
-        currentPokemon = await response.json();
-        if (currentPokemon['name'].toLowerCase().includes(search)) {
-            document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i);
-            loadTypes(currentPokemon, i);
+async function renderSearch(searchValue) {
+    for (let i = 0; i < allPokemons.length; i++) {
+        const pokemon = allPokemons[i];
+        let name = pokemon['name'];
+        if (name.toLowerCase().includes(searchValue)) {
+            let pokemonResponse = await fetch(pokemon['url']);
+            let pokemonAsJson = await pokemonResponse.json();
+            searchedPokemon.push(pokemonAsJson);
         }
-        
     }
+    showSearch();
+}
+
+function showSearch() {
+    document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(searchedPokemon);
+    loadTypes(currentPokemon, searchedPokemon);
 }

@@ -11,10 +11,11 @@
     <script src="script.js"></script>
 </head>
 
-<body onload="loadPokemons()">
+<body onload="init()">
 
     <header>
-        <input type="text" placeholder="Search Pokemon" id="search" onkeydown="searchPokemon()">
+        <input type="text" placeholder="Search by Name" id="search">
+        <button onclick="searchPokemon()">Search</button>
         <div class="pokemonStatsCard pokemonPopup d-none" id="pokemonStatsCard">
 
         </div>
