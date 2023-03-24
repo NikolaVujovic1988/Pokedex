@@ -163,8 +163,6 @@ body {
     align-items: center;
     top: 20%;
     position: absolute;
-    height: 60%;
-    width: 350px;
     z-index: 999;
     background-color: aliceblue;
 }
@@ -179,6 +177,9 @@ body {
 
 header {
     display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1111;
     margin-bottom: 20px;
     height: 100px;
     width: 100vw;
@@ -191,6 +192,11 @@ header {
 
 header input {
     height: 25px;
+}
+
+.pokemonPopup {
+    position: absolute !important;
+    top: 200px;
 }
 
 
