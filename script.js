@@ -4,6 +4,8 @@ let countPokemons = 0;
 
 let searchedPokemon = [];
 
+let allPokemons = [];
+
 async function init() {
     loadPokemons();
 }
@@ -13,7 +15,7 @@ async function loadPokemons() {
     let response = await fetch(url);
     let respondPokemon = await response.json();
     let allPokemon = respondPokemon['results']
-    globalThis.allPokemons = allPokemon;
+    allPokemons.push(allPokemon);
 
     load20Pokemons();
 }
@@ -126,6 +128,8 @@ function bigCardTemplate(i) {
     `;
 }
 
+                        /*  SEARCH FUNCTION*/
+
 function searchPokemon() {
     let search = document.getElementById('search').value;
     searchValue = search.toLowerCase();
@@ -137,17 +141,21 @@ function searchPokemon() {
 async function renderSearch(searchValue) {
     for (let i = 0; i < allPokemons.length; i++) {
         const pokemon = allPokemons[i];
-        let name = pokemon['name'];
-        if (name.toLowerCase().includes(searchValue)) {
+        const name = pokemon['name'];
+        if (name.includes(searchValue)) {
             let pokemonResponse = await fetch(pokemon['url']);
             let pokemonAsJson = await pokemonResponse.json();
             searchedPokemon.push(pokemonAsJson);
+            console.log(searchedPokemon);
+            showSearch();
         }
     }
-    showSearch();
 }
 
 function showSearch() {
-    document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(searchedPokemon);
-    loadTypes(currentPokemon, searchedPokemon);
+    for (let i = 0; i < searchedPokemon.length; i++) {
+        const showPokemon = searchedPokemon[i];
+        document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(showPokemon);
+        //loadTypes(currentPokemon, searchedPokemon);
+    }
 }
