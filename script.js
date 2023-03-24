@@ -11,10 +11,10 @@ async function init() {
 }
 
 async function loadPokemons() {
-    let url = `https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0`;
-    let response = await fetch(url);
+    let url4AllPokemons = `https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0`;
+    let response = await fetch(url4AllPokemons);
     let respondPokemon = await response.json();
-    let allPokemon = respondPokemon['results']
+    let allPokemon = respondPokemon['results'];
     allPokemons.push(allPokemon);
 
     load20Pokemons();
@@ -135,15 +135,15 @@ function searchPokemon() {
     searchValue = search.toLowerCase();
     console.log(searchValue);
     renderSearch(searchValue);
-    search.value = '';
+    //search.value = '';
 }
 
 async function renderSearch(searchValue) {
     for (let i = 0; i < allPokemons.length; i++) {
         const pokemon = allPokemons[i];
-        const name = pokemon['name'];
+        let name = pokemon[i]['name'];
         if (name.includes(searchValue)) {
-            let pokemonResponse = await fetch(pokemon['url']);
+            let pokemonResponse = await fetch(pokemon[i]['url']);
             let pokemonAsJson = await pokemonResponse.json();
             searchedPokemon.push(pokemonAsJson);
             console.log(searchedPokemon);
@@ -153,9 +153,17 @@ async function renderSearch(searchValue) {
 }
 
 function showSearch() {
-    for (let i = 0; i < searchedPokemon.length; i++) {
-        const showPokemon = searchedPokemon[i];
-        document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(showPokemon);
-        //loadTypes(currentPokemon, searchedPokemon);
+    let pokemonsCardBody = document.getElementById('pokemonBigCard');
+    pokemonsCardBody.innerHTML = '';
+    if (searchedPokemon == 0) {
+        pokemonsCardBody.innerHTML = `
+            <h1>Sorry, we couldn't find anything</h1>
+        `;
+    } else {
+        for (let i = 0; i < searchedPokemon.length; i++) {
+            const showPokemon = searchedPokemon[i];
+            pokemonsCardBody.innerHTML += smallCardTemplate(showPokemon);
+            //loadTypes(currentPokemon, searchedPokemon);
+        }   
     }
 }
