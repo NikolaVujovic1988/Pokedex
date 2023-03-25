@@ -40,6 +40,8 @@ function loadTypes(currentPokemon, i) {
     }
 }
 
+/* This fuction change background of pokemon cards by pokemon types*/
+
 function renderTypes(type, i) {
     let typeId = document.getElementById(`pokemonsCard${i}`);
     if (type == 'grass') {
@@ -163,7 +165,7 @@ function showSearch() {
         for (let i = 0; i < searchedPokemon.length; i++) {
             const showPokemon = searchedPokemon[i];
             pokemonsCardBody.innerHTML += smallCardTemplate(showPokemon);
-            //loadTypes(currentPokemon, searchedPokemon);
+            loadTypes(currentPokemon, searchedPokemon);
         }   
     }
 }
