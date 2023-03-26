@@ -115,6 +115,7 @@ async function openPokemonStats(i) {
 
 function bigCardTemplate(i) {
     return `
+    <div>
         <div class="pokemonsCardBig" id="pokemonsCard${i}">
             <div class="pokemonsCardHeader">
                 <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
@@ -127,6 +128,9 @@ function bigCardTemplate(i) {
             <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
             <img id="pokemonImage" src="${currentPokemon['sprites']['other']['dream_world']['front_default']}">
         </div>
+        <div class="pokemonStatsPopup">
+        </div>
+    </div>
     `;
 }
 
