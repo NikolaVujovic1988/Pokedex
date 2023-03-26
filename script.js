@@ -135,6 +135,21 @@ function bigCardTemplate(i) {
                 <h4>Evolution</h4>
                 <h4>Moves</h4>
             </div>
+            <div class="containerShowStats">
+                <div class="statsCharacteristics">
+                    <p class="statsCharacteristicsP">Species</p>
+                    <p class="statsCharacteristicsP">Height</p>
+                    <p class="statsCharacteristicsP">Weight</p>
+                    <p class="statsCharacteristicsP">Abilities</p>
+                </div>
+                <div class="statsContainer">
+                    <p class="stats">About</p>
+                    <p class="stats">Best Stats</p>
+                    <p class="stats">Evolution</p>
+                    <p class="stats">Moves</p>
+                </div>
+            </div>
+            <h3 class="h3Stats">Breeding</h3>
         </div>
     </div>
     `;

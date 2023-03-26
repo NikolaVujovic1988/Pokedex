@@ -48,7 +48,8 @@ body {
     display: flex;
     align-items: flex-start;
     position: relative;
-    padding: 10px;
+    padding: 24px;
+    flex-direction: column;
 }
 
 .pokemonsInfo {
@@ -237,6 +238,8 @@ header input {
 
 h4 {
     cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 h4:hover {
@@ -244,4 +247,44 @@ h4:hover {
     border-bottom: 2px solid blue;
 }
 
+.statsCharacteristics {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
+.statsCharacteristicsP {
+    color: gray;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.statsCharacteristicsP:first-child {
+    margin-top: 6px;
+}
+
+.stats {
+    color: black;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.stats:first-child {
+    margin-top: 6px;
+}
+
+.containerShowStats {
+    display: flex;
+}
+
+.statsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 30px;
+}
+
+.h3Stats {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
