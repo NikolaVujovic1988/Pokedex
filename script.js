@@ -115,7 +115,7 @@ async function openPokemonStats(i) {
 
 function bigCardTemplate(i) {
     return `
-        <div class="pokemonsCard" id="pokemonsCard${i}">
+        <div class="pokemonsCardBig" id="pokemonsCard${i}">
             <div class="pokemonsCardHeader">
                 <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
                 <span id="pokemonNo">#${currentPokemon['id']}</span>

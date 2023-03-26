@@ -22,6 +22,19 @@ body {
     cursor: pointer;
 }
 
+.pokemonsCardBig {
+    height: 150px;
+    width: 250px;
+    background-color: #FC6D6D;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    padding: 24px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    position: relative;
+}
+
 .pokemonsCard:hover {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
@@ -160,11 +173,13 @@ body {
 .pokemonStatsCard {
     display: flex;
     justify-content: center;
-    align-items: center;
-    top: 20%;
+    align-items: flex-start;
+    top: 100px;
     position: absolute;
     z-index: 999;
-    background-color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.22);
+    width: 100vw;
+    height: 100vh;
 }
 
 .d-none {
@@ -196,7 +211,8 @@ header input {
 
 .pokemonPopup {
     position: absolute !important;
-    top: 200px;
+    top: 100px;
+    padding-top: 100px;
 }
 
 
