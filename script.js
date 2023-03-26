@@ -129,6 +129,12 @@ function bigCardTemplate(i) {
             <img id="pokemonImage" src="${currentPokemon['sprites']['other']['dream_world']['front_default']}">
         </div>
         <div class="pokemonStatsPopup">
+            <div class="statsHeader">
+                <h4>About</h4>
+                <h4>Best Stats</h4>
+                <h4>Evolution</h4>
+                <h4>Moves</h4>
+            </div>
         </div>
     </div>
     `;

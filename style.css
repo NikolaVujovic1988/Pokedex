@@ -46,9 +46,9 @@ body {
     margin-top: -36px;
     background-color: white;
     display: flex;
-    justify-content: center;
     align-items: flex-start;
     position: relative;
+    padding: 10px;
 }
 
 .pokemonsInfo {
@@ -225,6 +225,23 @@ header input {
     position: absolute !important;
     top: 100px;
     padding-top: 100px;
+}
+
+.statsHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: gray;
+    border-bottom: 0.5px solid lightgray;
+}
+
+h4 {
+    cursor: pointer;
+}
+
+h4:hover {
+    margin-bottom: 0;
+    border-bottom: 2px solid blue;
 }
 
 
