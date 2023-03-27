@@ -144,8 +144,8 @@ function bigCardTemplate(i) {
                 </div>
                 <div class="statsContainer">
                     <p class="stats">About</p>
-                    <p class="stats">Best Stats</p>
-                    <p class="stats">Evolution</p>
+                    <p class="stats">${(currentPokemon['height'] / 10).toFixed(2)} cm</p>
+                    <p class="stats">${currentPokemon['weight'] / 10} kg</p>
                     <p class="stats">Moves</p>
                 </div>
             </div>
