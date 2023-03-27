@@ -150,6 +150,18 @@ function bigCardTemplate(i) {
                 </div>
             </div>
             <h3 class="h3Stats">Breeding</h3>
+            <div class="containerShowStats">
+                <div class="statsCharacteristics">
+                    <p class="statsCharacteristicsP">Gender</p>
+                    <p class="statsCharacteristicsP">Egg Groups</p>
+                    <p class="statsCharacteristicsP">Egg Cycle</p>
+                </div>
+                <div class="statsContainer">
+                    <p class="stats">About</p>
+                    <p class="stats">Best Stats</p>
+                    <p class="stats">Evolution</p>
+                </div>
+            </div>
         </div>
     </div>
     `;

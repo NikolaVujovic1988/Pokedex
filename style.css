@@ -41,7 +41,7 @@ body {
 }
 
 .pokemonStatsPopup {
-    height: 300px;
+    min-height: 100px;
     border-radius: 40px;
     margin-top: -36px;
     background-color: white;
@@ -251,6 +251,7 @@ h4:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100px;
 }
 
 .statsCharacteristicsP {
