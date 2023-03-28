@@ -115,7 +115,7 @@ async function openPokemonStats(i) {
 
 function bigCardTemplate(i) {
     return `
-    <div>
+    <div class="popupPokemon">
         <div class="pokemonsCardBig" id="pokemonsCard${i}">
             <div class="pokemonsCardHeader">
                 <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
@@ -137,29 +137,15 @@ function bigCardTemplate(i) {
             </div>
             <div class="containerShowStats">
                 <div class="statsCharacteristics">
-                    <p class="statsCharacteristicsP">Species</p>
                     <p class="statsCharacteristicsP">Height</p>
                     <p class="statsCharacteristicsP">Weight</p>
                     <p class="statsCharacteristicsP">Abilities</p>
                 </div>
                 <div class="statsContainer">
-                    <p class="stats">About</p>
                     <p class="stats">${(currentPokemon['height'] / 10).toFixed(2)} cm</p>
                     <p class="stats">${currentPokemon['weight'] / 10} kg</p>
-                    <p class="stats">${currentPokemon['abilities']['0']['ability']['name']}, ${currentPokemon['abilities']['1']['ability']['name']}</p>
-                </div>
-            </div>
-            <h3 class="h3Stats">Breeding</h3>
-            <div class="containerShowStats">
-                <div class="statsCharacteristics">
-                    <p class="statsCharacteristicsP">Gender</p>
-                    <p class="statsCharacteristicsP">Egg Groups</p>
-                    <p class="statsCharacteristicsP">Egg Cycle</p>
-                </div>
-                <div class="statsContainer">
-                    <p class="stats">About</p>
-                    <p class="stats">Best Stats</p>
-                    <p class="stats">Evolution</p>
+                    <p class="stats">${currentPokemon['abilities']['0']['ability']['name']}</p>
+                    <p class="stats">${currentPokemon['abilities']['1']['ability']['name']}</p>
                 </div>
             </div>
         </div>

@@ -288,3 +288,7 @@ h4:hover {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.popupPokemon {
+    scale: 1.2;
+}
