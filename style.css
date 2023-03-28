@@ -184,13 +184,16 @@ body {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
+.z-index {
+    z-index: 999;
+}
+
 .pokemonStatsCard {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     top: 100px;
     position: absolute;
-    z-index: 999;
     background-color: rgba(0, 0, 0, 0.22);
     width: 100vw;
     height: 100vh;

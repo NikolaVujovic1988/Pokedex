@@ -111,11 +111,12 @@ async function openPokemonStats(i) {
 
     document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(i);
     loadTypes(currentPokemon, i);
+    document.getElementById('popupPokemon').classList.add('z-index');
 }
 
 function bigCardTemplate(i) {
     return `
-    <div class="popupPokemon">
+    <div class="popupPokemon" id="popupPokemon" onclick="doNotClose(event)">
         <div class="pokemonsCardBig" id="pokemonsCard${i}">
             <div class="pokemonsCardHeader">
                 <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
@@ -191,4 +192,13 @@ function showSearch() {
             loadTypes(currentPokemon, searchedPokemon);
         }   
     }
+}
+
+function doNotClose(event) {
+    event.stopPropagation()
+}
+
+function closePopup() {
+    document.getElementById('popupPokemon').classList.add('d-none');
+    document.getElementById('popupPokemon').classList.remove('z-index');
 }
