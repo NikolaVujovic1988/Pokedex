@@ -111,7 +111,7 @@ async function openPokemonStats(i) {
 
     document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(i);
     loadTypes(currentPokemon, i);
-    document.getElementById('popupPokemon').classList.add('z-index');
+    document.getElementById('pokemonStatsCard').classList.add('z-index');
 }
 
 function bigCardTemplate(i) {
@@ -199,6 +199,6 @@ function doNotClose(event) {
 }
 
 function closePopup() {
-    document.getElementById('popupPokemon').classList.add('d-none');
-    document.getElementById('popupPokemon').classList.remove('z-index');
+    document.getElementById('pokemonStatsCard').classList.add('d-none');
+    document.getElementById('pokemonStatsCard').classList.remove('z-index');
 }
