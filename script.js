@@ -90,7 +90,7 @@ function smallCardTemplate(i) {
         <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i})">
             <div class="pokemonsCardHeader">
                 <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
-                <span id="pokemonNo">#${currentPokemon['id']}</span>
+                <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
             </div>
             <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
                 
@@ -120,7 +120,7 @@ function bigCardTemplate(i) {
         <div class="pokemonsCardBig" id="pokemonsCard${i}">
             <div class="pokemonsCardHeader">
                 <h2 class="closeCard pointer" onclick="closePopup()">x</h2>
-                <span id="pokemonNo">#${currentPokemon['id']}</span>
+                <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
             </div>
             <h2 class="pokemonNameBigCard" id="pokemonName">${currentPokemon['name']}</h2>
             <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
