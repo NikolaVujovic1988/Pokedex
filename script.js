@@ -211,15 +211,16 @@ function openBaseStats(i) {
     `;
 }
 
-function openMoves(i) {
+function openMoves() {
     let movesContainer = document.getElementById('containerShowStats');
     movesContainer.innerHTML = '';
-    for (let index = 0; index < 99; index++) {
-        const move = currentPokemon['moves'][index]['move']['name'];
+    let move = currentPokemon['moves'];
+    for (let index = 0; index < move.length; index++) {
+        const currentMove = currentPokemon['moves'][index]['move']['name'];
         movesContainer.innerHTML += 
     `
         <div class="moves" id="moves">    
-            <p>"${move}"</p>
+            <p>"${currentMove}"</p>
         </div>
     `;
     }
