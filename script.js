@@ -176,7 +176,39 @@ function openAbout(i) {
 }
 
 function openBaseStats(i) {
-    document.getElementById('containerShowStats').innerHTML = `<h4>base stats</h4>`;
+    document.getElementById('containerShowStats').innerHTML = `
+    <div class="statsProgressBar">
+        <h4 class="h4progress">HP</h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: ${currentPokemon['stats']['0']['base_stat']}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${currentPokemon['stats']['0']['base_stat']}</div>
+        </div>
+   
+        <h4 class="h4progress">Attack</h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: ${currentPokemon['stats']['1']['base_stat']}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${currentPokemon['stats']['1']['base_stat']}</div>
+        </div>
+
+        <h4 class="h4progress">Defense</h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: ${currentPokemon['stats']['2']['base_stat']}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${currentPokemon['stats']['2']['base_stat']}</div>
+        </div>
+
+        <h4 class="h4progress">Special attack</h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: ${currentPokemon['stats']['3']['base_stat']}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${currentPokemon['stats']['3']['base_stat']}</div>
+        </div>
+
+        <h4 class="h4progress">Special defense</h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: ${currentPokemon['stats']['4']['base_stat']}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${currentPokemon['stats']['4']['base_stat']}</div>
+        </div>
+
+        <h4 class="h4progress">Speed</h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: ${currentPokemon['stats']['5']['base_stat']}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${currentPokemon['stats']['5']['base_stat']}</div>
+        </div>
+    </div>
+    `;
 }
 
 /*  SEARCH FUNCTION*/

@@ -307,6 +307,7 @@ h4:hover {
 .containerShowStats {
     display: flex;
     margin-top: 20px;
+    width: 100%;
 }
 
 .statsContainer {
@@ -327,4 +328,47 @@ h4:hover {
 .underline {
     border-bottom: 2px solid blue;
     margin-bottom: 0;
+}
+
+.progress {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: .75rem;
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+.progress-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    background-color: #007bff;
+    transition: width .6s ease;
+}
+
+.statsProgressBar {
+    width: 100%;
+}
+
+.h4progress {
+    margin: 0;
+    font-size: 14px;
+    color:gray;
+}
+
+.h4progress:hover {
+    border: none;
 }
