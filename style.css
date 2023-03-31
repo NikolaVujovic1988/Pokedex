@@ -56,6 +56,7 @@ body {
     position: relative;
     padding: 24px;
     flex-direction: column;
+    width: 250px;
 }
 
 .pokemonsInfo {
@@ -308,6 +309,9 @@ h4:hover {
     display: flex;
     margin-top: 20px;
     width: 100%;
+    flex-wrap: wrap;
+    max-height: 250px;
+    overflow-x: hidden;
 }
 
 .statsContainer {
@@ -371,4 +375,15 @@ h4:hover {
 
 .h4progress:hover {
     border: none;
+}
+
+.moves {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 4px;
+}
+
+p {
+    margin: 0;
+    font-size: 12px;
 }

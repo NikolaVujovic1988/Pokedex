@@ -135,7 +135,7 @@ function bigCardTemplate(i) {
             <div class="statsHeader">
                 <h4 id="statsAbout" onclick="openAbout(${i})">About</h4>
                 <h4 id="statsBaseStats" onclick="openBaseStats(${i})">Base Stats</h4>
-                <h4 id="statsMoves">Moves</h4>
+                <h4 id="statsMoves" onclick="openMoves(${i})">Moves</h4>
             </div>
             <div class="containerShowStats" id="containerShowStats">
                 <div class="statsCharacteristics">
@@ -209,6 +209,21 @@ function openBaseStats(i) {
         </div>
     </div>
     `;
+}
+
+function openMoves(i) {
+    let movesContainer = document.getElementById('containerShowStats');
+    movesContainer.innerHTML = '';
+    for (let index = 0; index < 99; index++) {
+        const move = currentPokemon['moves'][index]['move']['name'];
+        movesContainer.innerHTML += 
+    `
+        <div class="moves" id="moves">    
+            <p>"${move}"</p>
+        </div>
+    `;
+    }
+    
 }
 
 /*  SEARCH FUNCTION*/
