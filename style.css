@@ -323,3 +323,8 @@ h4:hover {
 .popupPokemon {
     scale: 1.2;
 }
+
+.underline {
+    border-bottom: 2px solid blue;
+    margin-bottom: 0;
+}

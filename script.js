@@ -111,6 +111,7 @@ async function openPokemonStats(i) {
 
     document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(i);
     loadTypes(currentPokemon, i);
+    document.getElementById('statsAbout').classList.add('underline');
     document.getElementById('pokemonStatsCard').classList.add('z-index');
 }
 
@@ -132,20 +133,21 @@ function bigCardTemplate(i) {
         </div>
         <div class="pokemonStatsPopup">
             <div class="statsHeader">
-                <h4>About</h4>
-                <h4>Best Stats</h4>
-                <h4>Evolution</h4>
-                <h4>Moves</h4>
+                <h4 id="statsAbout" onclick="openAbout(${i})">About</h4>
+                <h4 id="statsBaseStats" onclick="openBaseStats(${i})">Base Stats</h4>
+                <h4 id="statsMoves">Moves</h4>
             </div>
-            <div class="containerShowStats">
+            <div class="containerShowStats" id="containerShowStats">
                 <div class="statsCharacteristics">
                     <p class="statsCharacteristicsP">Height:</p>
                     <p class="statsCharacteristicsP">Weight:</p>
+                    <p class="statsCharacteristicsP">Experience:</p>
                     <p class="statsCharacteristicsP">Abilities:</p>
                 </div>
                 <div class="statsContainer">
                     <p class="stats">${(currentPokemon['height'] / 10).toFixed(2)} cm</p>
                     <p class="stats">${currentPokemon['weight'] / 10} kg</p>
+                    <p class="stats">${currentPokemon['base_experience']}</p>
                     <p class="stats">${currentPokemon['abilities']['0']['ability']['name']}</p>
                     <p class="stats">${currentPokemon['abilities']['1']['ability']['name']}</p>
                 </div>
@@ -153,6 +155,28 @@ function bigCardTemplate(i) {
         </div>
     </div>
     `;
+}
+
+function openAbout(i) {
+    document.getElementById('containerShowStats').innerHTML = `
+            <div class="statsCharacteristics">
+                <p class="statsCharacteristicsP">Height:</p>
+                <p class="statsCharacteristicsP">Weight:</p>
+                <p class="statsCharacteristicsP">Experience:</p>
+                <p class="statsCharacteristicsP">Abilities:</p>
+            </div>
+            <div class="statsContainer">
+                <p class="stats">${(currentPokemon['height'] / 10).toFixed(2)} cm</p>
+                <p class="stats">${currentPokemon['weight'] / 10} kg</p>
+                <p class="stats">${currentPokemon['base_experience']}</p>
+                <p class="stats">${currentPokemon['abilities']['0']['ability']['name']}</p>
+                <p class="stats">${currentPokemon['abilities']['1']['ability']['name']}</p>
+            </div>
+    `;
+}
+
+function openBaseStats(i) {
+    document.getElementById('containerShowStats').innerHTML = `<h4>base stats</h4>`;
 }
 
 /*  SEARCH FUNCTION*/
