@@ -119,9 +119,10 @@ function bigCardTemplate(i) {
     <div class="popupPokemon" id="popupPokemon" onclick="doNotClose(event)">
         <div class="pokemonsCardBig" id="pokemonsCard${i}">
             <div class="pokemonsCardHeader">
-                <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
+                <h2 class="closeCard pointer" onclick="closePopup()">x</h2>
                 <span id="pokemonNo">#${currentPokemon['id']}</span>
             </div>
+            <h2 class="pokemonNameBigCard" id="pokemonName">${currentPokemon['name']}</h2>
             <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
                 
             </div>
@@ -154,7 +155,7 @@ function bigCardTemplate(i) {
     `;
 }
 
-                        /*  SEARCH FUNCTION*/
+/*  SEARCH FUNCTION*/
 
 function searchPokemon() {
     let search = document.getElementById('search').value;
@@ -190,7 +191,7 @@ function showSearch() {
             const showPokemon = searchedPokemon[i];
             pokemonsCardBody.innerHTML += smallCardTemplate(showPokemon);
             loadTypes(currentPokemon, searchedPokemon);
-        }   
+        }
     }
 }
 

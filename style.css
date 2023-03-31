@@ -85,6 +85,12 @@ body {
     z-index: 111;
 }
 
+.closeCard {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
 #pokemonImageLogo {
     object-fit: contain;
     height: 150px;
@@ -98,10 +104,24 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    align-items: baseline;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 #pokemonNo {
     font-weight: bold;
+}
+
+.pokemonName {
+    margin-top: 0;
+    margin-bottom: 80px;
+}
+
+.pokemonNameBigCard {
+    margin-top: 0;
 }
 
 .pokemonsCardHeaderBtn {
