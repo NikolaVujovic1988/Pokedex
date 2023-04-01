@@ -158,6 +158,9 @@ function bigCardTemplate(i) {
 }
 
 function openAbout(i) {
+    document.getElementById('statsAbout').classList.add('underline');
+    document.getElementById('statsBaseStats').classList.remove('underline');
+    document.getElementById('statsMoves').classList.remove('underline');
     document.getElementById('containerShowStats').innerHTML = `
             <div class="statsCharacteristics">
                 <p class="statsCharacteristicsP">Height:</p>
@@ -176,6 +179,9 @@ function openAbout(i) {
 }
 
 function openBaseStats(i) {
+    document.getElementById('statsAbout').classList.remove('underline');
+    document.getElementById('statsBaseStats').classList.add('underline');
+    document.getElementById('statsMoves').classList.remove('underline');
     document.getElementById('containerShowStats').innerHTML = `
     <div class="statsProgressBar">
         <h4 class="h4progress">HP</h4>
@@ -212,6 +218,9 @@ function openBaseStats(i) {
 }
 
 function openMoves() {
+    document.getElementById('statsAbout').classList.remove('underline');
+    document.getElementById('statsBaseStats').classList.remove('underline');
+    document.getElementById('statsMoves').classList.add('underline');
     let movesContainer = document.getElementById('containerShowStats');
     movesContainer.innerHTML = '';
     let move = currentPokemon['moves'];
