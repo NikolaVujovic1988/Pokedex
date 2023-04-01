@@ -3,7 +3,6 @@ body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
-    background-color: rgb(238, 238, 238);
     font-family: 'Open Sans';
 }
 
@@ -244,12 +243,25 @@ header {
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid lightgray;
-    background-color: rgb(241, 241, 241);
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 header input {
     height: 25px;
+}
+
+.searchBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    height: 30px;
+    width: 80px;
+    margin-left: 5px;
+    border-radius: 2px;
+}
+
+.searchBtn:hover {
+    background-color: #006ee4;
 }
 
 .pokemonPopup {

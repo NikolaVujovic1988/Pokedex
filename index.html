@@ -17,15 +17,17 @@
 <body onload="init()">
 
     <header>
-        <input type="text" placeholder="Search by Name" id="search">
-        <button onclick="searchPokemon()">Search</button>
+        <div class="search">
+            <input type="text" placeholder="Search by Name" id="search">
+            <button class="searchBtn pointer" onclick="searchPokemon()">Search</button>
+        </div>
         <div class="pokemonStatsCard pokemonPopup d-none z-index" id="pokemonStatsCard" onclick="closePopup()">
 
         </div>
     </header>
 
     <div class="pokemonBigCard" id="pokemonBigCard">
-        
+
     </div>
     <div class="loadMore">
         <button class="loadMoreBtn" onclick="loadPokemons()">Load more Pokemons</button>

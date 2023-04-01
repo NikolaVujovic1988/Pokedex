@@ -239,6 +239,7 @@ function openMoves() {
 /*  SEARCH FUNCTION*/
 
 function searchPokemon() {
+    searchedPokemon = [];
     let search = document.getElementById('search').value;
     searchValue = search.toLowerCase();
     console.log(searchValue);
