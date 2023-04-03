@@ -1,4 +1,4 @@
-let currentPokemon = [];
+let currentPokemon;
 
 let countPokemons = 0;
 
@@ -239,11 +239,12 @@ function openMoves() {
 /*  SEARCH FUNCTION*/
 
 function searchPokemon() {
-    currentPokemon = [];
+    searchedPokemon = [];
     let search = document.getElementById('search').value;
     searchValue = search.toLowerCase();
     console.log(searchValue);
     renderSearch(searchValue);
+    //search.value = '';
 }
 
 async function renderSearch(searchValue) {
@@ -255,12 +256,12 @@ async function renderSearch(searchValue) {
             let pokemonAsJson = await pokemonResponse.json();
             searchedPokemon.push(pokemonAsJson);
             console.log(searchedPokemon);
-            showSearch(searchedPokemon);
+            showSearch();
         }
     }
 }
 
-function showSearch(searchedPokemon) {
+function showSearch() {
     let pokemonsCardBody = document.getElementById('pokemonBigCard');
     pokemonsCardBody.innerHTML = '';
     if (searchedPokemon == 0) {
@@ -270,21 +271,8 @@ function showSearch(searchedPokemon) {
     } else {
         for (let i = 0; i < searchedPokemon.length; i++) {
             const showPokemon = searchedPokemon[i];
-            pokemonsCardBody.innerHTML += `
-            <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i})">
-            <div class="pokemonsCardHeader">
-                <h2 class="pokemonName" id="pokemonName">${showPokemon['name']}</h2>
-                <span id="pokemonNo">#${showPokemon['id']}</span>
-            </div>
-            <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
-                
-            </div>
-
-            <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
-            <img id="pokemonImage" src="${showPokemon['sprites']['other']['dream_world']['front_default']}">
-        </div>
-            `;
-            //loadTypes(currentPokemon);
+            pokemonsCardBody.innerHTML += smallCardTemplate(showPokemon);
+            loadTypes(currentPokemon, searchedPokemon);
         }
     }
 }
