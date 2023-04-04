@@ -244,7 +244,6 @@ function searchPokemon() {
     searchValue = search.toLowerCase();
     console.log(searchValue);
     renderSearch(searchValue);
-    //search.value = '';
 }
 
 async function renderSearch(searchValue) {
