@@ -270,7 +270,8 @@ function showSearch() {
     } else {
         for (let i = 0; i < searchedPokemon.length; i++) {
             const showPokemon = searchedPokemon[i];
-            pokemonsCardBody.innerHTML += smallCardTemplate(showPokemon);
+            let currentPokemon = showPokemon;
+            pokemonsCardBody.innerHTML += smallCardTemplate(i);
             loadTypes(currentPokemon, searchedPokemon);
         }
     }
