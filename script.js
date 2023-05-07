@@ -87,20 +87,25 @@ function typeInfoTemplate(type) {
 
 function smallCardTemplate(i) {
     return `
-        <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i})">
-            <div class="pokemonsCardHeader">
-                <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
-                <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
-            </div>
-            <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
-                
-            </div>
-
-            <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
-            <img id="pokemonImage" src="${currentPokemon['sprites']['other']['dream_world']['front_default']}">
-        </div>
+      <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i})">
+          <div class="pokemonsCardHeader">
+              <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
+              <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
+          </div>
+          <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
+              
+          </div>
+  
+          <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
+          ${
+              currentPokemon['sprites']['other']['dream_world']['front_default'] 
+              ? `<img id="pokemonImage" src="${currentPokemon['sprites']['other']['dream_world']['front_default']}">`
+              : ''
+          }
+      </div>
     `;
 }
+
 
 async function openPokemonStats(i) {
     document.getElementById('pokemonStatsCard').classList.remove('d-none');
@@ -238,44 +243,38 @@ function openMoves() {
 
 /*  SEARCH FUNCTION*/
 
-function searchPokemon() {
-    searchedPokemon = [];
-    let search = document.getElementById('search').value;
-    searchValue = search.toLowerCase();
-    console.log(searchValue);
-    renderSearch(searchValue);
-}
-
-async function renderSearch(searchValue) {
-    for (let i = 0; i < allPokemons.length; i++) {
-        const pokemon = allPokemons[i];
-        let name = pokemon[i]['name'];
-        if (name.includes(searchValue)) {
-            let pokemonResponse = await fetch(pokemon[i]['url']);
-            let pokemonAsJson = await pokemonResponse.json();
-            searchedPokemon.push(pokemonAsJson);
-            console.log(searchedPokemon);
-            showSearch();
-        }
+async function searchPokemon() {
+    // Dohvatamo uneti tekst iz input polja za pretragu
+    let searchValue = document.getElementById('searchInput').value;
+  
+    // Ako je input polje prazno, resetujemo prikaz na sve pokemone
+    if (searchValue === '') {
+      document.getElementById('pokemonBigCard').innerHTML = '';
+      countPokemons = 0;
+      searchedPokemon = [];
+      load20Pokemons();
+      return;
     }
-}
-
-function showSearch() {
-    let pokemonsCardBody = document.getElementById('pokemonBigCard');
-    pokemonsCardBody.innerHTML = '';
-    if (searchedPokemon == 0) {
-        pokemonsCardBody.innerHTML = `
-            <h1>Sorry, we couldn't find anything</h1>
-        `;
-    } else {
-        for (let i = 0; i < searchedPokemon.length; i++) {
-            const showPokemon = searchedPokemon[i];
-            let currentPokemon = showPokemon;
-            pokemonsCardBody.innerHTML += smallCardTemplate(i);
-            loadTypes(currentPokemon, searchedPokemon);
-        }
+  
+    // Inače, filtriramo pokemone na osnovu unetog teksta
+    searchedPokemon = allPokemons[0].filter(pokemon => {
+      return pokemon.name.includes(searchValue.toLowerCase());
+    });
+  
+    // Resetujemo prikaz prikaz na prazan string
+    document.getElementById('pokemonBigCard').innerHTML = '';
+    countPokemons = 0;
+  
+    // Prikažemo filtrirane pokemone
+    for (let i = 0; i < searchedPokemon.length; i++) {
+      let url = searchedPokemon[i].url;
+      let response = await fetch(url);
+      currentPokemon = await response.json();
+      console.log('loaded pokemon', currentPokemon);
+      document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i, currentPokemon);
+      loadTypes(currentPokemon, i);
     }
-}
+  }
 
 function doNotClose(event) {
     event.stopPropagation()
