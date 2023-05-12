@@ -11,7 +11,7 @@ async function init() {
 }
 
 async function loadPokemons() {
-    let url4AllPokemons = `https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0`;
+    let url4AllPokemons = `https://pokeapi.co/api/v2/pokemon/?limit=1015&offset=0`;
     let response = await fetch(url4AllPokemons);
     let respondPokemon = await response.json();
     let allPokemon = respondPokemon['results'];
@@ -21,12 +21,12 @@ async function loadPokemons() {
 }
 
 async function load20Pokemons() {
-    for (let i = countPokemons; i < countPokemons + 20; i++) {
+    for (let i = countPokemons; i < Math.min(countPokemons + 20, 1015); i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log('loaded pokemon', currentPokemon);
-        document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i);
+        document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i, currentPokemon);
         loadTypes(currentPokemon, i);
     }
     countPokemons += 20;
@@ -85,40 +85,18 @@ function typeInfoTemplate(type) {
     `;
 }
 
-function smallCardTemplate(i) {
-    return `
-      <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i})">
-          <div class="pokemonsCardHeader">
-              <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
-              <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
-          </div>
-          <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
-              
-          </div>
-  
-          <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
-          ${
-              currentPokemon['sprites']['other']['dream_world']['front_default'] 
-              ? `<img id="pokemonImage" src="${currentPokemon['sprites']['other']['dream_world']['front_default']}">`
-              : ''
-          }
-      </div>
-    `;
-}
-
-
-async function openPokemonStats(i) {
+async function openPokemonStats(i, pokemonId) {
     document.getElementById('pokemonStatsCard').classList.remove('d-none');
-
-    let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
+  
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`;
     let response = await fetch(url);
     currentPokemon = await response.json();
-
-    document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(i);
+  
+    document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(i, currentPokemon);
     loadTypes(currentPokemon, i);
     document.getElementById('statsAbout').classList.add('underline');
     document.getElementById('pokemonStatsCard').classList.add('z-index');
-}
+  }
 
 function bigCardTemplate(i) {
     return `
@@ -244,10 +222,8 @@ function openMoves() {
 /*  SEARCH FUNCTION*/
 
 async function searchPokemon() {
-    // Dohvatamo uneti tekst iz input polja za pretragu
     let searchValue = document.getElementById('searchInput').value;
   
-    // Ako je input polje prazno, resetujemo prikaz na sve pokemone
     if (searchValue === '') {
       document.getElementById('pokemonBigCard').innerHTML = '';
       countPokemons = 0;
@@ -256,24 +232,37 @@ async function searchPokemon() {
       return;
     }
   
-    // Inače, filtriramo pokemone na osnovu unetog teksta
     searchedPokemon = allPokemons[0].filter(pokemon => {
       return pokemon.name.includes(searchValue.toLowerCase());
     });
   
-    // Resetujemo prikaz prikaz na prazan string
     document.getElementById('pokemonBigCard').innerHTML = '';
     countPokemons = 0;
   
-    // Prikažemo filtrirane pokemone
-    for (let i = 0; i < searchedPokemon.length; i++) {
-      let url = searchedPokemon[i].url;
+    for (let i = 0; i < Math.min(searchedPokemon.length, 1015); i++) {      let url = searchedPokemon[i].url;
       let response = await fetch(url);
       currentPokemon = await response.json();
       console.log('loaded pokemon', currentPokemon);
       document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i, currentPokemon);
       loadTypes(currentPokemon, i);
     }
+  }
+  
+  function smallCardTemplate(i, currentPokemon) {
+    const defaultImage = currentPokemon['sprites']['other']['dream_world']['front_default'];
+    const imageSrc = defaultImage ? defaultImage : '';
+  
+    return `
+      <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i}, ${currentPokemon.id})">
+        <div class="pokemonsCardHeader">
+          <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
+          <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
+        </div>
+        <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}"></div>
+        <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
+        <img id="pokemonImage" src="${imageSrc}">
+      </div>
+    `;
   }
 
 function doNotClose(event) {
