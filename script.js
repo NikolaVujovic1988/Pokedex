@@ -252,16 +252,22 @@ async function searchPokemon() {
     const defaultImage = currentPokemon['sprites']['other']['dream_world']['front_default'];
     const imageSrc = defaultImage ? defaultImage : '';
   
+    let imageElement = '';
+    if (imageSrc) {
+      imageElement = `<img id="pokemonImage" src="${imageSrc}">`;
+    }
+  
     return `
-      <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i}, ${currentPokemon.id})">
+    <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i}, ${currentPokemon.id})">
         <div class="pokemonsCardHeader">
-          <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
-          <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
+             <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
+            <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
         </div>
-        <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}"></div>
-        <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
-        <img id="pokemonImage" src="${imageSrc}">
-      </div>
+        <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
+            <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
+            ${imageElement}
+        </div>
+    </div>
     `;
   }
 
