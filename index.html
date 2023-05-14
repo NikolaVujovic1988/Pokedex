@@ -20,6 +20,7 @@
         <div class="search">
             <input type="text" placeholder="Search by Name" id="searchInput">
             <button class="searchBtn pointer" onclick="searchPokemon()">Search</button>
+            <button class="searchBtn pointer" onclick="clearSearch()">Clear</button>
         </div>
         <div class="pokemonStatsCard pokemonPopup d-none z-index" id="pokemonStatsCard" onclick="closePopup()">
 
@@ -30,7 +31,7 @@
 
     </div>
     <div class="loadMore">
-        <button class="loadMoreBtn" onclick="loadPokemons()">Load more Pokemons</button>
+        <button class="loadMoreBtn" id="loadMoreBtn" onclick="loadPokemons()">Load more Pokemons</button>
     </div>
 
 </body>

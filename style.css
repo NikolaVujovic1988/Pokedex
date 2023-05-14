@@ -22,11 +22,6 @@ body {
     cursor: pointer;
 }
 
-.pokemonsCard img:last-child:hover {
-    transform: scale(1.3);
-    transition: 125ms;
-}
-
 .pokemonsCardBig {
     height: 150px;
     width: 250px;
@@ -83,6 +78,11 @@ body {
     bottom: 15px;
     right: 40px;
     z-index: 111;
+}
+
+#pokemonImage:hover {
+    scale: 1.3;
+    transition: 225ms ease-in-out;
 }
 
 .closeCard {

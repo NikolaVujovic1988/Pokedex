@@ -6,6 +6,15 @@ let searchedPokemon = [];
 
 let allPokemons = [];
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('searchInput').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        searchPokemon();
+      }
+    });
+  });
+
 async function init() {
     loadPokemons();
 }
@@ -223,6 +232,9 @@ function openMoves() {
 
 async function searchPokemon() {
     let searchValue = document.getElementById('searchInput').value;
+    let loadMoreBtn = document.getElementById('loadMoreBtn');
+
+    loadMoreBtn.classList.add('d-none')
   
     if (searchValue === '') {
       document.getElementById('pokemonBigCard').innerHTML = '';
@@ -235,6 +247,12 @@ async function searchPokemon() {
     searchedPokemon = allPokemons[0].filter(pokemon => {
       return pokemon.name.includes(searchValue.toLowerCase());
     });
+
+    if (searchedPokemon.length === 0) {
+        /* CHANGE ALERT WITH PROPER HTML/CSS ANIMATION */
+        alert('No Pokemons with this name found.'); 
+        return;
+      }
   
     document.getElementById('pokemonBigCard').innerHTML = '';
     countPokemons = 0;
@@ -270,6 +288,16 @@ async function searchPokemon() {
     </div>
     `;
   }
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('pokemonBigCard').innerHTML = '';
+    let loadMoreBtn = document.getElementById('loadMoreBtn');
+
+    loadMoreBtn.classList.remove('d-none');
+    countPokemons = 0;
+    init();
+}
 
 function doNotClose(event) {
     event.stopPropagation()
