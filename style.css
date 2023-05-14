@@ -400,3 +400,9 @@ p {
     margin: 0;
     font-size: 12px;
 }
+
+@media (max-width: 400px) {
+    .popupPokemon {
+        scale: 1.1;
+    }
+}
