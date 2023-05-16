@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 async function init() {
-    loadPokemons();
-}
+    showLoadingAnimation();
+    await loadPokemons();
+    hideLoadingAnimation();
+  }
 
 async function loadPokemons() {
     let url4AllPokemons = `https://pokeapi.co/api/v2/pokemon/?limit=1015&offset=0`;
@@ -47,6 +49,14 @@ function loadTypes(currentPokemon, i) {
         document.getElementById(`pokemonsCardHeaderBtn${i}`).innerHTML += typeInfoTemplate(type);
         renderTypes(type, i);
     }
+}
+
+function showLoadingAnimation() {
+    document.getElementById('loadingAnimation').style.display = 'block';
+}
+
+function hideLoadingAnimation() {
+    document.getElementById('loadingAnimation').style.display = 'none';
 }
 
 /* This fuction change background of pokemon cards by pokemon types*/
@@ -88,6 +98,29 @@ function renderTypes(type, i) {
     }
 }
 
+function smallCardTemplate(i, currentPokemon) {
+    const defaultImage = currentPokemon['sprites']['other']['dream_world']['front_default'];
+    const imageSrc = defaultImage ? defaultImage : '';
+  
+    let imageElement = '';
+    if (imageSrc) {
+      imageElement = `<img id="pokemonImage" src="${imageSrc}">`;
+    }
+  
+    return `
+    <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i}, ${currentPokemon.id})">
+        <div class="pokemonsCardHeader">
+             <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
+            <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
+        </div>
+        <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
+            <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
+            ${imageElement}
+        </div>
+    </div>
+    `;
+  }
+
 function typeInfoTemplate(type) {
     return `
     <button class="headerBtn">${type}</button>
@@ -105,7 +138,7 @@ async function openPokemonStats(i, pokemonId) {
     loadTypes(currentPokemon, i);
     document.getElementById('statsAbout').classList.add('underline');
     document.getElementById('pokemonStatsCard').classList.add('z-index');
-  }
+}
 
 function bigCardTemplate(i) {
     return `
@@ -264,30 +297,8 @@ async function searchPokemon() {
       document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i, currentPokemon);
       loadTypes(currentPokemon, i);
     }
-  }
+}
   
-  function smallCardTemplate(i, currentPokemon) {
-    const defaultImage = currentPokemon['sprites']['other']['dream_world']['front_default'];
-    const imageSrc = defaultImage ? defaultImage : '';
-  
-    let imageElement = '';
-    if (imageSrc) {
-      imageElement = `<img id="pokemonImage" src="${imageSrc}">`;
-    }
-  
-    return `
-    <div class="pokemonsCard" id="pokemonsCard${i}" onclick="openPokemonStats(${i}, ${currentPokemon.id})">
-        <div class="pokemonsCardHeader">
-             <h2 class="pokemonName" id="pokemonName">${currentPokemon['name']}</h2>
-            <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
-        </div>
-        <div class="pokemonsCardHeaderBtn" id="pokemonsCardHeaderBtn${i}">
-            <img id="pokemonImageLogo" src="./img/pokemon_logo_small.png">
-            ${imageElement}
-        </div>
-    </div>
-    `;
-  }
 
 function clearSearch() {
     document.getElementById('searchInput').value = '';
