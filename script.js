@@ -27,7 +27,6 @@ async function loadPokemons() {
     let respondPokemon = await response.json();
     let allPokemon = respondPokemon['results'];
     allPokemons.push(allPokemon);
-
     load20Pokemons();
 }
 
@@ -135,6 +134,7 @@ async function openPokemonStats(i, pokemonId) {
     currentPokemon = await response.json();
   
     document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(i, currentPokemon);
+    document.getElementById('pokemonBigCard').classList.add('blur');
     loadTypes(currentPokemon, i);
     document.getElementById('statsAbout').classList.add('underline');
     document.getElementById('pokemonStatsCard').classList.add('z-index');
@@ -316,5 +316,6 @@ function doNotClose(event) {
 
 function closePopup() {
     document.getElementById('pokemonStatsCard').classList.add('d-none');
+    document.getElementById('pokemonBigCard').classList.remove('blur');
     document.getElementById('pokemonStatsCard').classList.remove('z-index');
 }

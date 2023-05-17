@@ -111,6 +111,10 @@ body {
     cursor: pointer;
 }
 
+.blur {
+    filter: blur(5px);
+}
+
 #pokemonNo {
     font-weight: bold;
 }
