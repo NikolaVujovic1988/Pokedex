@@ -186,7 +186,11 @@ function openAbout(i) {
     document.getElementById('statsAbout').classList.add('underline');
     document.getElementById('statsBaseStats').classList.remove('underline');
     document.getElementById('statsMoves').classList.remove('underline');
-    document.getElementById('containerShowStats').innerHTML = `
+    document.getElementById('containerShowStats').innerHTML = aboutTemplate(i);
+}
+
+function aboutTemplate(i) {
+    return `
             <div class="statsCharacteristics">
                 <p class="statsCharacteristicsP">Height:</p>
                 <p class="statsCharacteristicsP">Weight:</p>
@@ -207,7 +211,11 @@ function openBaseStats(i) {
     document.getElementById('statsAbout').classList.remove('underline');
     document.getElementById('statsBaseStats').classList.add('underline');
     document.getElementById('statsMoves').classList.remove('underline');
-    document.getElementById('containerShowStats').innerHTML = `
+    document.getElementById('containerShowStats').innerHTML = statsTemplate(i);
+}
+
+function statsTemplate(i) {
+    return `
     <div class="statsProgressBar">
         <h4 class="h4progress">HP</h4>
         <div class="progress">
@@ -264,33 +272,57 @@ function openMoves() {
 /*  SEARCH FUNCTION*/
 
 async function searchPokemon() {
-    let searchValue = document.getElementById('searchInput').value;
-    let loadMoreBtn = document.getElementById('loadMoreBtn');
-
-    loadMoreBtn.classList.add('d-none')
+    const searchValue = getSearchValue();
+    hideLoadMoreButton();
   
     if (searchValue === '') {
-      document.getElementById('pokemonBigCard').innerHTML = '';
-      countPokemons = 0;
-      searchedPokemon = [];
-      load20Pokemons();
+      resetSearch();
       return;
     }
   
-    searchedPokemon = allPokemons[0].filter(pokemon => {
+    await displayPokemonCards();
+}
+
+function getSearchValue() {
+    return document.getElementById('searchInput').value;
+}
+
+function hideLoadMoreButton() {
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    loadMoreBtn.classList.add('d-none');
+}
+
+function resetSearch() {
+    document.getElementById('pokemonBigCard').innerHTML = '';
+    countPokemons = 0;
+    searchedPokemon = [];
+    load20Pokemons();
+}
+
+function searchPokemons(searchValue) {
+    return allPokemons[0].filter(pokemon => {
       return pokemon.name.includes(searchValue.toLowerCase());
     });
+}
 
+function showNoPokemonsFoundAlert() {
+    // Change this with proper animation
+    alert('No Pokemons with this name found.');
+}
+
+async function displayPokemonCards() {
+    const searchedPokemon = searchPokemons(getSearchValue());
+  
     if (searchedPokemon.length === 0) {
-        /* CHANGE ALERT WITH PROPER HTML/CSS ANIMATION */
-        alert('No Pokemons with this name found.'); 
-        return;
-      }
+      showNoPokemonsFoundAlert();
+      return;
+    }
   
     document.getElementById('pokemonBigCard').innerHTML = '';
     countPokemons = 0;
   
-    for (let i = 0; i < Math.min(searchedPokemon.length, 1015); i++) {      let url = searchedPokemon[i].url;
+    for (let i = 0; i < Math.min(searchedPokemon.length, 1015); i++) {
+      let url = searchedPokemon[i].url;
       let response = await fetch(url);
       currentPokemon = await response.json();
       console.log('loaded pokemon', currentPokemon);
