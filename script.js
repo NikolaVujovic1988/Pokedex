@@ -170,7 +170,7 @@ function bigCardTemplate(i) {
                     <p class="statsCharacteristicsP">Abilities:</p>
                 </div>
                 <div class="statsContainer">
-                    <p class="stats">${(currentPokemon['height'] / 10).toFixed(2)} cm</p>
+                    <p class="stats">${(currentPokemon['height'] * 10)} cm</p>
                     <p class="stats">${currentPokemon['weight'] / 10} kg</p>
                     <p class="stats">${currentPokemon['base_experience']}</p>
                     <p class="stats">${currentPokemon['abilities']['0']['ability']['name']}</p>
@@ -325,7 +325,6 @@ async function displayPokemonCards() {
       let url = searchedPokemon[i].url;
       let response = await fetch(url);
       currentPokemon = await response.json();
-      console.log('loaded pokemon', currentPokemon);
       document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i, currentPokemon);
       loadTypes(currentPokemon, i);
     }
