@@ -144,6 +144,10 @@ function bigCardTemplate(i) {
     return `
     <div class="popupPokemon" id="popupPokemon" onclick="doNotClose(event)">
         <div class="pokemonsCardBig" id="pokemonsCard${i}">
+            <div class="arrows">
+                <span class="spanArrows pointer"> < </span>
+                <span class="spanArrows pointer"> > </span>
+            </div>
             <div class="pokemonsCardHeader">
                 <h2 class="closeCard pointer" onclick="closePopup()">x</h2>
                 <span id="pokemonNo">#${currentPokemon['id'].toString().padStart(4, '0')}</span>
