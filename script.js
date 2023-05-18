@@ -141,6 +141,12 @@ async function openPokemonStats(i, pokemonId) {
 }
 
 function bigCardTemplate(i) {
+    const ability0 = currentPokemon['abilities']['0']
+        ? currentPokemon['abilities']['0']['ability']['name']
+        : ''; // Ovde možete postaviti šta god želite da se prikaže kada ne postoji sposobnost
+    const ability1 = currentPokemon['abilities']['1']
+        ? currentPokemon['abilities']['1']['ability']['name']
+        : ''; // Isto važi i za ovde
     return `
     <div class="popupPokemon" id="popupPokemon" onclick="doNotClose(event)">
         <div class="pokemonsCardBig" id="pokemonsCard${i}">
@@ -177,8 +183,8 @@ function bigCardTemplate(i) {
                     <p class="stats">${(currentPokemon['height'] * 10)} cm</p>
                     <p class="stats">${currentPokemon['weight'] / 10} kg</p>
                     <p class="stats">${currentPokemon['base_experience']}</p>
-                    <p class="stats">${currentPokemon['abilities']['0']['ability']['name']}</p>
-                    <p class="stats">${currentPokemon['abilities']['1']['ability']['name']}</p>
+                    <p class="stats">${ability0}</p>
+                    <p class="stats">${ability1}</p>
                 </div>
             </div>
         </div>
