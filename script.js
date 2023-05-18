@@ -145,8 +145,8 @@ function bigCardTemplate(i) {
     <div class="popupPokemon" id="popupPokemon" onclick="doNotClose(event)">
         <div class="pokemonsCardBig" id="pokemonsCard${i}">
             <div class="arrows">
-                <span class="spanArrows pointer" id="arrowLeft" onclick="loadPrevPokemon(${currentPokemon['id']})"> < </span>
-                <span class="spanArrows pointer" id="arrowRight" onclick="loadNextPokemon(${currentPokemon['id']})"> > </span>
+                <span class="spanArrows pointer" onclick="loadPrevPokemon(${currentPokemon['id']})"> < </span>
+                <span class="spanArrows pointer" onclick="loadNextPokemon(${currentPokemon['id']})"> > </span>
             </div>
             <div class="pokemonsCardHeader">
                 <h2 class="closeCard pointer" onclick="closePopup()">x</h2>
@@ -186,29 +186,32 @@ function bigCardTemplate(i) {
     `;
 }
 
-async function loadPrevPokemon(currentId) {
-    if (currentId <= 1) {
-        document.getElementById('arrowLeft').classList.add('d-none');
-        return; // No pokemon before the first one
+async function loadNextPokemon(id) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${id + 1}/`;
+    let response = await fetch(url);
+    if (response.ok) { // check if HTTP-status is 200-299
+        currentPokemon = await response.json();
+        document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(id, currentPokemon);
+        loadTypes(currentPokemon, id);
+    } else {
+        alert("HTTP-Error: " + response.status);
     }
-
-    let url = `https://pokeapi.co/api/v2/pokemon/${currentId - 1}/`;
-    let response = await fetch(url);
-    currentPokemon = await response.json();
-    document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(currentId - 2, currentPokemon);
 }
 
-async function loadNextPokemon(currentId) {
-    if (currentId >= 1015) {
-        document.getElementById('arrowLeft').classList.add('d-none');
-        return; // No pokemon after the last one
-    }   
-
-    let url = `https://pokeapi.co/api/v2/pokemon/${currentId + 1}/`;
-    let response = await fetch(url);
-    currentPokemon = await response.json();
-    document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(currentId, currentPokemon);
+async function loadPrevPokemon(id) {
+    if(id > 1) { // No need to make a request if id is 1, since no Pokemon with id lower than 1 exists
+        let url = `https://pokeapi.co/api/v2/pokemon/${id - 1}/`;
+        let response = await fetch(url);
+        if (response.ok) { // check if HTTP-status is 200-299
+            currentPokemon = await response.json();
+            document.getElementById('pokemonStatsCard').innerHTML = bigCardTemplate(id - 2, currentPokemon);
+            loadTypes(currentPokemon, id - 2);
+        } else {
+            alert("HTTP-Error: " + response.status);
+        }
+    }
 }
+
 
 function openAbout(i) {
     document.getElementById('statsAbout').classList.add('underline');
