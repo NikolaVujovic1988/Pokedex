@@ -21,6 +21,12 @@ function smallCardTemplate(i, currentPokemon) {
     `;
 }
 
+function showLoadMoreBtn() {
+    document.getElementById('loadMoreBtnContainer').innerHTML = `        
+        <button class="loadMoreBtn" id="loadMoreBtn" onclick="loadPokemons()">Load more Pokemons</button>
+    `;
+}
+
 function typeInfoTemplate(type) {
     return `
     <button class="headerBtn">${type}</button>

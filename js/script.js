@@ -38,6 +38,7 @@ async function load20Pokemons() {
         console.log('loaded pokemon', currentPokemon);
         document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i, currentPokemon);
         loadTypes(currentPokemon, i);
+        showLoadMoreBtn();
     }
     countPokemons += 20;
 }
