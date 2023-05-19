@@ -236,6 +236,14 @@ body {
     height: 100vh;
 }
 
+.pokemonName::first-letter {
+    text-transform: capitalize;
+}
+
+.pokemonNameBigCard::first-letter {
+    text-transform: capitalize;
+}
+
 .d-none {
     display: none;
 }
