@@ -2,7 +2,6 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    overflow-x: hidden;
     font-family: 'Open Sans';
 }
 
@@ -101,10 +100,10 @@ body {
 
 #pokemonImageLogo {
     object-fit: contain;
-    height: 150px;
-    width: 150px;
+    height: 140px;
+    width: 140px;
     position: absolute;
-    right: -20px;
+    right: 0;
     bottom: 30px;
 }
 
@@ -232,7 +231,7 @@ body {
     top: 100px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.22);
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 }
 
@@ -259,7 +258,7 @@ header {
     z-index: 1111;
     margin-bottom: 20px;
     height: 100px;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     align-items: center;
     border-bottom: 0.1px solid lightgray;
@@ -480,7 +479,7 @@ p {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
     .popupPokemon {
         scale: 1.1;
     }
@@ -506,5 +505,11 @@ p {
 
     .headerLogo {
         display: none;
+    }
+}
+
+@media (max-width: 350px) {
+    .popupPokemon {
+        scale: 1;
     }
 }

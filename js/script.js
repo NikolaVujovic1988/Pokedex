@@ -35,7 +35,6 @@ async function load20Pokemons() {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
         let response = await fetch(url);
         currentPokemon = await response.json();
-        console.log('loaded pokemon', currentPokemon);
         document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i, currentPokemon);
         loadTypes(currentPokemon, i);
         showLoadMoreBtn();
