@@ -182,6 +182,10 @@ function searchPokemons(searchValue) {
 function showNoPokemonsFoundAlert() {
     // Change this with proper animation
     alert('No Pokemons with this name found.');
+    document.getElementById('pokemonBigCard').innerHTML = '';
+    countPokemons = 0;
+    searchedPokemon = [];
+    clearSearch();
 }
 
 async function displayPokemonCards() {
@@ -199,7 +203,7 @@ async function displayPokemonCards() {
       let url = searchedPokemon[i].url;
       let response = await fetch(url);
       currentPokemon = await response.json();
-      document.getElementById('pokemonBigCard').innerHTML += smallCardTemplate(i, currentPokemon);
+      document.getElementById('pokemonBigCard').innerHTML += await smallCardTemplate(i, currentPokemon);
       loadTypes(currentPokemon, i);
     }
 }
@@ -223,4 +227,14 @@ function closePopup() {
     document.getElementById('pokemonStatsCard').classList.add('d-none');
     document.getElementById('pokemonBigCard').classList.remove('blur');
     document.getElementById('pokemonStatsCard').classList.remove('z-index');
+}
+
+const searchInput = document.getElementById("searchInput");
+if (searchInput) {
+    searchInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            searchPokemon();
+        }
+    });
 }
